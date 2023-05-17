@@ -1,3 +1,11 @@
+<?php
+if(isset($_GET['e']))
+$errorMessage = "Email already exists. Got to the bottom link to sign in or reset your password. Thank You.<br>";
+elseif(isset($_GET['p']))
+$errorMessage = "Passwords do not match. Please try again.<br>";
+else
+$errorMessage = "";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,26 +27,28 @@
     <form method="post" action="includes/signup.php">
 
         <lable>First Name: </lable>
-        <input type="email" name="email" required>
+        <input type="text" name="email" required>
         <br>
         <br>
         <lable>Last Name: </lable>
-        <input type="email" name="email" required>
+        <input type="text" name="email" required>
         <br>
         <br>
         <lable>Email: </lable>
-        <input type="email" name="email" required>
+        <input type="email" name="email" id="email1" onBlur="checkAvailability()" required>
         <br>
+        <span id="user-availability-status"></span>
+        <p><img src="images/loading.gif" id="loaderIcon" style="display:none; width:30px; height:20px;" /></p>
         <br>
         <lable>Password: </lable>
-        <input type="password" name="password" required>
+        <input type="password" name="password1" required>
         <br>
         <br>
         <lable>Confirm Password: </lable>
-        <input type="password" name="password" required>
+        <input type="password" name="password2" required>
         <br>
         <br>
-        <button type="submit">Create an Account</button>
+        <button type="submit" id="subbtn" disabled>Create an Account</button>
     </form>
        <?php 
        //The location of the link below should be the same as well
@@ -46,5 +56,29 @@
        <br>
 <p>If you <storng>already have</storng> an account, <a href="signin.php">Sign In here</a></p>
     </div>
+    <br>
+    <?php echo $errorMessage; ?>
 </body>
+<footer>
+    <?php // A simple AJAX script to check if the eamil is already in use. ?>
+
+    <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">     
+
+function checkAvailability() {
+$("#loaderIcon").show();
+jQuery.ajax({
+url: "includes/checkEmailExist.php",
+data:'email='+$("#email1").val(),
+type: "POST",
+success:function(data){
+//if(data.trim()==''){$("#subbtn").attr("disabled", false);}
+$("#user-availability-status").html(data);
+$("#loaderIcon").hide();
+},
+error:function (){}
+});
+}
+</script>
+</footer>
 </html>

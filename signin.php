@@ -1,3 +1,11 @@
+<?php
+if(isset($_GET['e']))
+$errorMessage = "Email already exists. Got to the bottom link to sign in or reset your password. Thank You.<br>";
+elseif(isset($_GET['p']))
+$errorMessage = "Passwords do not match. Please try again.<br>";
+else
+$errorMessage = "";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +40,7 @@
        ?>
        <br>
 <p>If you <strong>don't</strong> have an account, <a href="signup.php">Sign up here</a></p>
+<p>Reset <a href="#">Password</a></p>
     </div>
 </body>
 </html>
