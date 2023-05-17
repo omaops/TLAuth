@@ -27,11 +27,11 @@ $errorMessage = "";
     <form method="post" action="includes/signup.php">
 
         <lable>First Name: </lable>
-        <input type="text" name="email" required>
+        <input type="text" name="firstname" required>
         <br>
         <br>
         <lable>Last Name: </lable>
-        <input type="text" name="email" required>
+        <input type="text" name="lastname" required>
         <br>
         <br>
         <lable>Email: </lable>
@@ -48,16 +48,17 @@ $errorMessage = "";
         <input type="password" name="password2" required>
         <br>
         <br>
-        <button type="submit" id="subbtn" disabled>Create an Account</button>
+        <button type="submit" id="subbtn">Create an Account</button>
     </form>
        <?php 
        //The location of the link below should be the same as well
        ?>
        <br>
+       <?php echo $errorMessage; ?>
 <p>If you <storng>already have</storng> an account, <a href="signin.php">Sign In here</a></p>
     </div>
     <br>
-    <?php echo $errorMessage; ?>
+    
 </body>
 <footer>
     <?php // A simple AJAX script to check if the eamil is already in use. ?>

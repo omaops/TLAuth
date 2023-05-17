@@ -9,7 +9,7 @@
          $numRows = $stmt->num_rows;
          if ($numRows > 0) {
              echo "<span style='color:red; font-size:12px;'class=''> Email Already In Use. <a href='forgotpassword.php'>Forgot Password?</a></span>";
-         } 
+         }
          else {
              echo "";
          }

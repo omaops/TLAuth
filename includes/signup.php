@@ -1,36 +1,39 @@
 <?php
+include 'fnts.php';
+include 'db_config.php';
+ob_start();
+//echo "hi?";
+if(isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['password1']) && isset($_POST['password2'])){
+//echo "all data set";
+    //Check if email already exists
+    checkEmailExist();
 
-if(isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['passwrod1']) && isset($_POST['passwrod2'])){
+if(passCheck($_POST['password1'], $_POST['password2'])){
 
-    if($_POST['passwrod1'] == $_POST['passwrod2']){
-        
-    }
-
-}
-
+//echo "passwrods equal";
 
 // prepare and bind
-$stmt = $conn->prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $firstname, $lastname, $email);
+$stmt = $conn->prepare("INSERT INTO member (firstname, lastname, email, password) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("ssss", $firstname, $lastname, $email, $hashed_password);
 
 // set parameters and execute
-$firstname = "John";
-$lastname = "Doe";
-$email = "john@example.com";
+$firstname = $_POST['firstname'];
+$lastname = $_POST['lastname'];
+$email = $_POST['email'];
+$hashed_password = password_hash($_POST['password1'], PASSWORD_DEFAULT);
 $stmt->execute();
 
-$firstname = "Mary";
-$lastname = "Moe";
-$email = "mary@example.com";
-$stmt->execute();
-
-$firstname = "Julie";
-$lastname = "Dooley";
-$email = "julie@example.com";
-$stmt->execute();
-
-echo "New records created successfully";
+//echo "New user created successfully";
 
 $stmt->close();
 $conn->close();
+
+    } else {
+        //echo "password mismatch";
+        header("Location: ../signup.php?p=");
+    exit;
+    }
+
+}
+ob_end_flush();
 ?>
