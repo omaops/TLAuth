@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(isset($_SESSION['email'])){
+    header('Location: index.php');
+}
 if(isset($_GET['e']))
 $errorMessage = "Email already exists. Got to the bottom link to sign in or reset your password. Thank You.<br>";
 elseif(isset($_GET['p']))

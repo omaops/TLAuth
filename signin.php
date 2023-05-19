@@ -1,10 +1,14 @@
 <?php
+session_start();
+if(isset($_SESSION['email'])){
+    header('Location: index.php');
+}
 if(isset($_GET['e']))
-$errorMessage = "Email already exists. Got to the bottom link to sign in or reset your password. Thank You.<br>";
-elseif(isset($_GET['p']))
-$errorMessage = "Passwords do not match. Please try again.<br>";
+$Message = "You have registered sucessfully. You can now Sign In<br>";
+elseif(isset($_GET['o']))
+$Message = "Wrong credentials. Please try again.<br>";
 else
-$errorMessage = "";
+$Message = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +45,8 @@ $errorMessage = "";
        <br>
 <p>If you <strong>don't</strong> have an account, <a href="signup.php">Sign up here</a></p>
 <p>Reset <a href="#">Password</a></p>
+
+<p><?php echo $Message; ?></p>
     </div>
 </body>
 </html>

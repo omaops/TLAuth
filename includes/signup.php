@@ -24,6 +24,7 @@ $hashed_password = password_hash($_POST['password1'], PASSWORD_DEFAULT);
 $stmt->execute();
 
 //echo "New user created successfully";
+header("Location: ../signin.php?e=");
 
 $stmt->close();
 $conn->close();
