@@ -29,14 +29,19 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['ema
         $activation_expiry = date('Y-m-d H:i:s',  time() + $expiry);
         $stmt->execute();
 
+        //Send verification code
+        send_activation_email($email, $activation_code);
+        //Unit testing ------------> Delete
+        $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+        $txt = $email . " -------- " . $activation_code;
+        fwrite($myfile, $txt);
+        fclose($myfile);
+
         //echo "New user created successfully";
         header("Location: ../signin.php?e=");
 
         $stmt->close();
         $conn->close();
-
-        //Send verification code
-        send_activation_email($email, $activation_code);
     } else {
         //echo "password mismatch";
         header("Location: ../signup.php?p=");

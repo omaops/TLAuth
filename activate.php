@@ -3,6 +3,7 @@ include 'includes/fnts.php';
 
 $message = "";
 if(isset($_GET['email']) && isset($_GET['actcode'])){
+    $message = $message."both are set";
     $verified = verifyUser($_GET['email'], $_GET['actcode']);
     if($verified == 1){
         activate_user($_GET['email']);
@@ -18,3 +19,5 @@ if(isset($_GET['email']) && isset($_GET['actcode'])){
 $message = "Hi";
 
 echo "<h1>".$message."</h1>";
+echo "<a href='signup.php'>Sign Up</a><br>";
+echo "<a href='signin.php'>Sign In</a><br>";
