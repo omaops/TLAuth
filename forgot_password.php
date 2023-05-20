@@ -1,12 +1,12 @@
 <?php
 if(isset($_GET['e']))
-$errorMessage = "Email is not registered<br>";
+$Message = "Email is not registered<br>";
 elseif(isset($_GET['p']))
-$errorMessage = "Password Reset Link Sent. Please go to your email.<br>";
+$Message = "Password Reset Link Sent. Please go to your email.<br>";
 elseif(isset($_GET['o']))
-$errorMessage = "Somthing went wrong. Please try again..<br>";
+$Message = "Somthing went wrong. Please try again..<br>";
 else
-$errorMessage = "";
+$Message = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,12 +34,12 @@ $errorMessage = "";
            
             <br>
             <br>
-            <button type="submit">Login</button>
+            <button type="submit">Send</button>
         </form>
         <!-- Link below will send you to a signup page if you do not have an account -->
         <br>
         <p>If you <strong>don't</strong> have an account, <a href="signup.php">Sign up here</a></p>
-        <p>Reset <a href="#">Password</a></p>
+        
         <!-- Here you will get any error messages like if you didn't input a correct email or password. This is where the message variable above is rendered accordingly -->
         <p><?php echo $Message; ?></p>
     </div>

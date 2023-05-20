@@ -239,8 +239,9 @@ function resetUser($em, $rc)
 
         while ($row = $result->fetch_assoc()) {
             if (password_verify($rc, $row['reset_code'])) {
-                if ($row['reset_expiry'] >= $row['updated_at'])
+                if ($row['reset_expiry'] >= $row['updated_at']){
                     return 1;
+                }
                 elseif ($row['reset_expiry'] < $row['updated_at'])
                     return 2;
                 else
@@ -263,8 +264,8 @@ function resetPass($em){
     elseif(checkEmailExist_p($em) == 1){
         //send_reset_email($em, $activation_code);
          // prepare and bind
-         $stmt = $conn->prepare("UPDATE member SET reset_code=?, reset_expiry=?");
-         $stmt->bind_param("ss", $hashed_reset_code, $reset_expiry);
+         $stmt = $conn->prepare("UPDATE member SET reset_code=?, reset_expiry=? WHERE email=?");
+         $stmt->bind_param("sss", $hashed_reset_code, $reset_expiry, $em);
  
          // set parameters and execute
          //One day expiration date
@@ -294,3 +295,44 @@ function resetPass($em){
          exit;
      }
     }
+
+
+function reset_the_password($em, $rc, $ps){
+include 'db_config.php';
+    if(resetUser($em, $rc) == 1){
+ //send_reset_email($em, $activation_code);
+         // prepare and bind
+         $stmt = $conn->prepare("UPDATE member SET reset_code=?, reset_expiry=?, password=? WHERE email=?");
+         $stmt->bind_param("ssss", $hashed_reset_code, $reset_expiry, password_hash($ps, PASSWORD_DEFAULT), $em);
+ 
+         // set parameters and execute
+         //One day expiration date
+         $expiry = 1 * 24  * 60 * 60;
+
+         $reset_code = generate_activation_code();
+         $hashed_reset_code = password_hash($reset_code, PASSWORD_DEFAULT);
+         $reset_expiry = date('Y-m-d H:i:s',  time() + $expiry);
+         $stmt->execute();
+ 
+         //Send verification code
+         send_reset_email($em, $reset_code);
+         //Unit testing ------------> Delete
+         $myfile = fopen("newfile_reset.txt", "w") or die("Unable to open file!");
+         $txt = $em . " -------- " . $reset_code;
+         fwrite($myfile, $txt);
+         fclose($myfile);
+ 
+         //echo "New user created successfully";
+         header("Location: ../signin.php?s=");
+ 
+         $stmt->close();
+         $conn->close();
+     } else {
+         //echo "password mismatch";
+         header("Location: ../reset.php?e=");
+    
+         exit;
+     }
+   
+    }
+    

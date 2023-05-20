@@ -13,6 +13,8 @@ elseif (isset($_GET['o']))
     $Message = "Wrong credentials. Please try again.<br>";
 elseif (isset($_GET['v']))
     $Message = "Account is not activated.<br> Please go to your email and click on the link to activate your account.<br>";
+elseif (isset($_GET['s']))
+    $Message = "Password has been changed. Please login with your new password.<br>";
 else
     $Message = "";
 //
@@ -53,7 +55,7 @@ else
         <!-- Link below will send you to a signup page if you do not have an account -->
         <br>
         <p>If you <strong>don't</strong> have an account, <a href="signup.php">Sign up here</a></p>
-        <p>Reset <a href="#">Password</a></p>
+        <p>Reset <a href="forgot_password.php">Password</a></p>
         <!-- Here you will get any error messages like if you didn't input a correct email or password. This is where the message variable above is rendered accordingly -->
         <p><?php echo $Message; ?></p>
     </div>

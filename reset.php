@@ -3,15 +3,36 @@
 // if (isset($_SESSION['email'])) {
 //     header('Location: index.php');
 // }
-// if (isset($_GET['e']))
-//     $errorMessage = "Email already exists. Got to the bottom link to sign in or reset your password. Thank You.<br>";
-// elseif (isset($_GET['p']))
-//     $errorMessage = "Passwords do not match. Please try again.<br>";
-// else
-//     $errorMessage = "";
+include 'includes/fnts.php';
+if (isset($_GET['e']))
+    $errorMessage = "Email already exists. Got to the bottom link to sign in or reset your password. Thank You.<br>";
+elseif (isset($_GET['p']))
+    $errorMessage = "Passwords do not match. Please try again.<br>";
+elseif (isset($_GET['s']))
+    $errorMessage = "Password has been changed.<br>";
+else
+    $errorMessage = "";
 if(isset($_GET['email']) && isset($_GET['rstcode'])){
+    $message = "";
     $reset = resetUser($_GET['email'], $_GET['rstcode']);
-}
+    if($reset == 3)
+    $message = "Email not found. Please contact the admin if you think this is a mistake. Thank You";
+    elseif($reset == 1)
+    $message = "Enter your new password here";
+    elseif($reset == 2)
+    $message = "Wrong Link or link has expired";
+    elseif($reset == 4)
+    $message = "Unknown Error occured. Please try again";
+    else
+    $message = "Unknown Error occured. Please try again";
+
+
+    //3 -> email not found
+    //1 -> You are allowed to change
+    //2 -> Link expired ... redo
+    //4 -> Unknown Error occured. Please try again.
+} else
+header("Location: signin.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,17 +53,21 @@ if(isset($_GET['email']) && isset($_GET['rstcode'])){
         //Inputs are required
         //You can add your own data types here and modify the file in the includes signup and database
         ?>
-        <h1>Reset Password</h1>
+        <h1>Reset Password (<?php echo $message;?>)</h1>
         <form method="post" action="includes/reset.php">
 
-
             Reset Password :
-            <input type="password" name="user[user_pass]" id="reg_pass" required="required">Confirm password
-            <input type="password" name="user[user_confirm_pass]" id="reg_confirm_pass" required="required">
-            <button type="submit" id="enter" disabled="true" value="Register">Register</button>
+            <input type="password" name="pass1" id="reg_pass" required="required"><br>
+            Confirm password:
+            <input type="password" name="pass2" id="reg_confirm_pass" required="required"><br>
+            <input type="hidden" name="email" value="<?php echo $_GET['email'];?>">
+            <input type="hidden" name="rstcode" value="<?php echo $_GET['rstcode'];?>"><br>
+            <button type="submit" id="enter" disabled="true">Reset</button>
+
         </form>
         <?php
         //The location of the link below should be the same as well
+        echo $errorMessage;
         ?>
         <br>
         <?php echo $errorMessage; ?>

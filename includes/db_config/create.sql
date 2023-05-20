@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2023 at 11:23 AM
+-- Generation Time: May 20, 2023 at 03:47 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -22,12 +22,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `member` (
-  `email` varchar(100) NOT NULL,
-  `firstname` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `verified` int(11) NOT NULL DEFAULT 0,
+  `is_admin` int(11) NOT NULL DEFAULT 0,
+  `activation_code` varchar(255) NOT NULL,
+  `reset_code` varchar(255) DEFAULT NULL,
+  `activation_expiry` datetime NOT NULL,
+  `reset_expiry` datetime NOT NULL DEFAULT current_timestamp(),
+  `activated_at` datetime DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
