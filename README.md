@@ -1,7 +1,7 @@
 # Authentication Module for PHP & MySQL
 tlAuth is a simple and yet secure user authentication module for PHP applications. Making integration and configuration as easy and secure as possible for PHP applications.
 
-I had so many reusable components on my shelf that a friend of mine made me realized I was already working with my own framework. Why not share it right? This authentication module will be the first of a large fully fledged PHP framework I am already working on.
+I had so many reusable components on my shelf that a friend of mine made me realized I was already working with my own framework. Why not share it right? This authentication module will be the first of a large fully fledged PHP framework I am already working on. Wish me luck.
 
 ## How to integrate
 First thing is to configure your database settings.
