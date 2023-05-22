@@ -17,9 +17,8 @@ if (!isset($_SESSION['email'])) {
 }
 ```
 6. Just keep an eye on the in-line comments to get more clarity.
-7. The inline comments will make sure you have all the information you need on what is happening in the code.
-8. If you still have problems setting up this module, email me at omaops@gmail.com and I’ll see if I can help.
-9. Cheers!
+7. If you still have problems setting up this module, email me at omaops@gmail.com and I’ll see if I can help.
+8. Cheers!
 
 ## File Structure and Documentation
 #### activate.php
