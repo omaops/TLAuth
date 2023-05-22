@@ -1,4 +1,4 @@
-# tlAuth User Authentication Module for PHP & MySQL
+# User Authentication Module for PHP & MySQL
 This is a secure user authentication module for PHP applications. Making integration and configuration as easy and secure as possible. 
 
 The inline comments will make sure you have all the information you need on what is happening in the code.
