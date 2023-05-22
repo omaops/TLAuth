@@ -1,7 +1,7 @@
 # Authentication Module for PHP & MySQL
-This is a secure user authentication module for PHP applications. Making integration and configuration as easy and secure as possible. 
+tlAuth is a simple and yet secure user authentication module for PHP applications. Making integration and configuration as easy and secure as possible for PHP applications.
 
-The inline comments will make sure you have all the information you need on what is happening in the code.
+I had so many reusable components on my shelf that a friend of mine made me realized I was already working with my own framework. Why not share it right? This authentication module will be the first of a large fully fledged PHP framework I am already working on.
 
 ## How to integrate
 First thing is to configure your database settings.
@@ -17,9 +17,11 @@ if (!isset($_SESSION['email'])) {
 }
 ```
 6. Just keep an eye on the in-line comments to get more clarity.
-7. If you still have problems setting up this module, email me at omaops@gmail.com and I’ll see if I can help.
+7. The inline comments will make sure you have all the information you need on what is happening in the code.
+8. If you still have problems setting up this module, email me at omaops@gmail.com and I’ll see if I can help.
+9. Cheers!
 
-## File Structure
+## File Structure and Documentation
 #### activate.php
 #### forgot_password.php
 #### index.php
