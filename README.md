@@ -48,6 +48,8 @@ if (!isset($_SESSION['email'])) {
 - The development was made on PHP version: 8.0.25.
 - You can probably use it on PHP version +5.4 and above applications.
 - No other additional frameworks or third-party libraries are needed.
+- All you need is good old vanilla PHP
+- Enjoy
 
 
 # DISCLAMER & PERMISSION
