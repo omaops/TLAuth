@@ -20,23 +20,23 @@ if (!isset($_SESSION['email'])) {
 7. If you still have problems setting up this module, email me at omaops@gmail.com and I’ll see if I can help.
 
 ## File Structure
-activate.php
-forgot_password.php
-index.php
-README.md
-reset.php
-signin.php
-signup.php
-/images/loading.gif
-/js/jquery-1.7.1.min.js
-/js/jquery-1.7.1.min.js
-/includes/db_config/create.sql
-/includes/checkEmailExist.php
-/includes/config.php
-/includes/db_config.php
-/includes/fnts.php
-/includes/forgot_password.php
-/includes/logout.php
-/includes/reset.php
-/includes/signin.php
-/includes/signup.php
+#### activate.php
+#### forgot_password.php
+#### index.php
+#### README.md
+#### reset.php
+#### signin.php
+#### signup.php
+#### /images/loading.gif
+#### /js/jquery-1.7.1.min.js
+#### /js/jquery-1.7.1.min.js
+#### /includes/db_config/create.sql
+#### /includes/checkEmailExist.php
+#### /includes/config.php
+#### /includes/db_config.php
+#### /includes/fnts.php
+#### /includes/forgot_password.php
+#### /includes/logout.php
+#### /includes/reset.php
+#### /includes/signin.php
+#### /includes/signup.php
