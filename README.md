@@ -45,8 +45,11 @@ if (!isset($_SESSION['email'])) {
 
 
 # REQUIRMENTS AND DEPENDENCIES
-- The development was made on PHP version: 8.0.25.
-- You can probably use it on PHP version +5.4 and above applications.
+- The development was made on PHP version: 8.0.25 but you will need atleast
+    -  PHP 7.2.5 or newer and 
+    -  MySQL 5.5 or newer or
+    -  MariaDB 5.5 or newer
+- You can probably use it on older PHP versions +5.4 and above but it is not recommended.
 - No other additional frameworks or third-party libraries are needed.
 - All you need is good old vanilla PHP
 - Enjoy
