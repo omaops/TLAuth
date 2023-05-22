@@ -3,6 +3,14 @@ tlAuth is a simple and yet secure user authentication module for PHP application
 
 I had so many reusable components on my shelf that a friend of mine made me realized I was already working with my own framework. Why not share it right? This authentication module will be the first of a large fully fledged PHP framework I am already working on. Wish me luck.
 
+## Features
+- Allows users to login or signup to create an account
+- Send activation link to signed up users
+- Allows users who forgot their passwords to reset passwords via email links securly
+- Links have expiry timer
+- Activation and reset codes are hashed so that even the DB owner can't activate the account on server (host) side.
+- Account disabling features
+
 ## How to integrate
 First thing is to configure your database settings.
 1. Create a database called 'tlauth'. If you want to change the name of the database, make sure to also change the name of the database in 'includes/db_config.php' file as well.
